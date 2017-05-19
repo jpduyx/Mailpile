@@ -8,7 +8,7 @@ WORKDIR /Mailpile
 # RUN addgroup -S mailpile && adduser -S -h /mailpile-data -G mailpile mailpile
 
 # [WIP: jpd] added based on: https://docs.openshift.org/latest/creating_images/guidelines.html
-RUN mkdir /mailpile-date && chgrp -R 0 /mailpile-data  /Mailpile  && chmod -R g+rwX /mailpile-data /Mailpile
+RUN mkdir /mailpile-data && chgrp -R 0 /mailpile-data  /Mailpile  && chmod -R g+rwX /mailpile-data /Mailpile
 
 # Install dependencies
 RUN apk --no-cache add \
