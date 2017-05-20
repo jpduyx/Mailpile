@@ -1,3 +1,3 @@
 #!/bin/sh
- 
-exec mailpile "$@"
+exec ./mp --www=0.0.0.0:33411 --wait
+#exec ./mp "$@"

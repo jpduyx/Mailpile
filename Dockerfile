@@ -1,12 +1,9 @@
 FROM alpine:3.5
 
+RUN mkdir -p /Mailpile
 WORKDIR /Mailpile
 
-# Add files 
-ADD requirements.txt /Mailpile/requirements.txt
-ADD packages/docker/entrypoint.sh /entrypoint.sh
-ADD . /Mailpile
-
+# Ownership  rootgroup for kubernetes
 RUN mkdir /mailpile-data && chgrp -R 0 /mailpile-data  /Mailpile  && chmod -R g+rwX /mailpile-data /Mailpile
 
 # Install dependencies
@@ -23,10 +20,11 @@ RUN apk --no-cache add \
   py-pbr \
   py-cryptography
 
+COPY requirements.txt /Mailpile/requirements.txt
 RUN pip install -r requirements.txt
 
 # Entrypoint
+COPY packages/docker/entrypoint.sh /entrypoint.sh
+COPY . /Mailpile
 ENTRYPOINT ["/entrypoint.sh"]
-# what is this?
-CMD ./mp --www=0.0.0.0:33411 --wait
 EXPOSE 33411
