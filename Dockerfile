@@ -3,8 +3,6 @@ FROM alpine:3.5
 RUN mkdir -p /Mailpile
 WORKDIR /Mailpile
 
-# Ownership  rootgroup for kubernetes
-RUN mkdir /mailpile-data && chgrp -R 0 /mailpile-data  /Mailpile  && chmod -R g+rwX /mailpile-data /Mailpile
 
 # Install dependencies
 RUN apk --no-cache add \
@@ -28,3 +26,7 @@ COPY packages/docker/entrypoint.sh /entrypoint.sh
 COPY . /Mailpile
 ENTRYPOINT ["/entrypoint.sh"]
 EXPOSE 33411
+
+# Ownership  rootgroup for kubernetes
+RUN mkdir /mailpile-data && chgrp -R 0 /.local /mailpile-data  /Mailpile  && chmod -R g+rwX /.local /mailpile-data /Mailpile
+
