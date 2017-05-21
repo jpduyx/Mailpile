@@ -30,3 +30,6 @@ EXPOSE 33411
 # Ownership  rootgroup for kubernetes
 RUN mkdir /.local  /mailpile-data && chgrp -R 0 /.local /mailpile-data  /Mailpile  && chmod -R g+rwX /.local /mailpile-data /Mailpile
 
+# ENV 
+ENV HOME /mailpile-data 
+# /.local not needed in this case ? 
