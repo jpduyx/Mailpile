@@ -28,5 +28,5 @@ ENTRYPOINT ["/entrypoint.sh"]
 EXPOSE 33411
 
 # Ownership  rootgroup for kubernetes
-RUN mkdir /mailpile-data && chgrp -R 0 /.local /mailpile-data  /Mailpile  && chmod -R g+rwX /.local /mailpile-data /Mailpile
+RUN mkdir /.local  /mailpile-data && chgrp -R 0 /.local /mailpile-data  /Mailpile  && chmod -R g+rwX /.local /mailpile-data /Mailpile
 
